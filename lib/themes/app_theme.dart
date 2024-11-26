@@ -4,10 +4,21 @@ import 'package:news_app_v2/themes/app_colors.dart';
 
 class AppTheme {
   static final appStyle = ThemeData(
+    fontFamily: 'Poppins',
     textTheme: TextTheme(
       titleMedium: TextStyle(
         fontSize: 24.sp,
         fontWeight: FontWeight.w700,
+        color: Colors.white,
+      ),
+      titleLarge: TextStyle(
+        fontSize: 22.sp,
+        fontWeight: FontWeight.w700,
+        color: AppColors.greyFont,
+      ),
+      titleSmall: TextStyle(
+        fontSize: 22.sp,
+        fontWeight: FontWeight.w400,
         color: Colors.white,
       ),
     ),
