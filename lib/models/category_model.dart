@@ -26,7 +26,7 @@ class CategoryModel {
         image: 'assets/images/bussines.png',
         color: const Color(0xffCF7E48)),
     CategoryModel(
-        title: 'Environment',
+        title: 'Entertainment',
         image: 'assets/images/environment.png',
         color: const Color(0xff4882CF)),
     CategoryModel(

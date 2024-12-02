@@ -1,13 +1,14 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:intl/intl.dart';
-import 'package:news_app_v2/models/article_model.dart';
+import 'package:loading_animation_widget/loading_animation_widget.dart';
+import 'package:news_app_v2/models/articles_response_model/article.dart';
 import 'package:news_app_v2/themes/app_colors.dart';
 import 'package:timeago/timeago.dart' as timeago;
 
 class ArticleWidget extends StatelessWidget {
   const ArticleWidget({super.key, required this.articleModel});
-  final ArticleModel articleModel;
+  final Article articleModel;
 
   @override
   Widget build(BuildContext context) {
@@ -16,17 +17,22 @@ class ArticleWidget extends StatelessWidget {
       children: [
         ClipRRect(
           borderRadius: BorderRadius.circular(5.r),
-          child: Image.network(
-            articleModel.image ??
+          child: CachedNetworkImage(
+            imageUrl: articleModel.urlToImage ??
                 'https://answers-afd.microsoft.com/static/images/image-not-found.jpg',
             fit: BoxFit.cover,
             width: 360.w,
             height: 230.h,
+            placeholder: (context, url) => LoadingAnimationWidget.flickr(
+              leftDotColor: Theme.of(context).colorScheme.primary,
+              rightDotColor: Colors.yellow,
+              size: 45.sp,
+            ),
           ),
         ),
         const RSizedBox(height: 10),
         Text(
-          articleModel.source ?? '',
+          articleModel.source?.name ?? 'No Source Found',
           style: TextStyle(
             fontSize: 10.sp,
             fontWeight: FontWeight.w400,
@@ -35,7 +41,7 @@ class ArticleWidget extends StatelessWidget {
         ),
         const RSizedBox(height: 5),
         Text(
-          articleModel.title ?? '',
+          articleModel.title ?? 'No Title Found',
           style: TextStyle(
             fontSize: 14.sp,
             fontWeight: FontWeight.w500,
@@ -45,7 +51,8 @@ class ArticleWidget extends StatelessWidget {
         Align(
           alignment: Alignment.centerRight,
           child: Text(
-            timeago.format(DateTime.parse(articleModel.date ?? '2024-1-1')),
+            timeago
+                .format(DateTime.parse(articleModel.publishedAt ?? '2024-1-1')),
             style: TextStyle(
               fontSize: 13.sp,
               fontWeight: FontWeight.w400,

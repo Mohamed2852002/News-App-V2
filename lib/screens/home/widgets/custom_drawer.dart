@@ -36,7 +36,7 @@ class CustomDrawer extends StatelessWidget {
           text: 'Settings',
           icon: Icons.settings,
           onTap: () {
-             onTap(DrawerTabs.settings);
+            onTap(DrawerTabs.settings);
           },
         ),
       ],
