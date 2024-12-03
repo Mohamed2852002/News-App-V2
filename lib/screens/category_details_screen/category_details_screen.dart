@@ -78,7 +78,10 @@ class CategoryDetailsScreen extends StatelessWidget {
           );
         }
         if (state is FetchSourcesFailure) {
-          return CustomErrorWidget(errorMessage: state.errorMessage);
+          return CustomErrorWidget(
+            errorMessage: state.errorMessage,
+            category: categoryName,
+          );
         } else {
           return const CustomLoadingWidget();
         }

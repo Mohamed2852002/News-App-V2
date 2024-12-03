@@ -29,7 +29,11 @@ class ArticleListView extends StatelessWidget {
             ),
           );
         } else if (state is FetchArticlesFailure) {
-          return CustomErrorWidget(errorMessage: state.errorMessage);
+          return CustomErrorWidget(
+            errorMessage: state.errorMessage,
+            sourceId: sourceId,
+            category: categoryName,
+          );
         } else {
           return const CustomLoadingWidget();
         }

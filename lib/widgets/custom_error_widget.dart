@@ -25,13 +25,22 @@ class CustomErrorWidget extends StatelessWidget {
           ),
           const RSizedBox(height: 16),
           ElevatedButton(
+            style: ElevatedButton.styleFrom(
+              backgroundColor: Theme.of(context).colorScheme.primary,
+            ),
             onPressed: () {
               BlocProvider.of<FetchArticlesCubit>(context)
                   .fetchArticles(sourceId ?? '');
               BlocProvider.of<FetchSourcesCubit>(context)
                   .fetchSources(category ?? '');
             },
-            child: const Text('Try Again'),
+            child: Text(
+              'Try Again',
+              style: Theme.of(context).textTheme.titleSmall?.copyWith(
+                    fontSize: 20.sp,
+                    fontWeight: FontWeight.bold,
+                  ),
+            ),
           ),
         ],
       ),

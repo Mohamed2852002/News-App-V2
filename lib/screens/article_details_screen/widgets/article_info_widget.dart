@@ -12,6 +12,9 @@ class ArticleInfoWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
+      margin: REdgeInsets.symmetric(
+        horizontal: 26,
+      ),
       padding: REdgeInsets.symmetric(horizontal: 12, vertical: 24),
       width: double.infinity,
       height: 370.h,
@@ -21,45 +24,47 @@ class ArticleInfoWidget extends StatelessWidget {
           25.r,
         ),
       ),
-      child: CustomScrollView(slivers: [
-        SliverFillRemaining(
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-              Text(
-                article.content ?? 'There\'s No Content',
-              ),
-              Align(
-                alignment: Alignment.centerRight,
-                child: TextButton(
-                  onPressed: () {
-                    launchArticleUrl(article.url ?? '', context);
-                  },
-                  child: const Row(
-                    mainAxisSize: MainAxisSize.min,
-                    children: [
-                      Text(
-                        'View Full Article',
-                      ),
-                      RSizedBox(width: 6),
-                      Icon(Icons.arrow_forward),
-                    ],
+      child: CustomScrollView(
+        slivers: [
+          SliverFillRemaining(
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                Text(
+                  article.content ?? 'There\'s No Content',
+                ),
+                Align(
+                  alignment: Alignment.centerRight,
+                  child: TextButton(
+                    onPressed: () {
+                      launchArticleUrl(article.url ?? '', context);
+                    },
+                    child: const Row(
+                      mainAxisSize: MainAxisSize.min,
+                      children: [
+                        Text(
+                          'View Full Article',
+                        ),
+                        RSizedBox(width: 6),
+                        Icon(Icons.arrow_forward),
+                      ],
+                    ),
                   ),
                 ),
-              ),
-            ],
+              ],
+            ),
           ),
-        ),
-      ]),
+        ],
+      ),
     );
   }
 
   Future<void> launchArticleUrl(String url, BuildContext context) async {
     Uri uri = Uri.parse(url);
-    if (await launchUrl(uri, mode: LaunchMode.inAppWebView)) {
-      return;
+    if (await canLaunchUrl(uri)) {
+      await launchUrl(uri, mode: LaunchMode.inAppWebView);
     } else {
-      showCustomSnackBar(context, 'Could\'n Launch Url');
+      showCustomSnackBar(context, 'Couldn\'t Launch Url');
     }
   }
 }

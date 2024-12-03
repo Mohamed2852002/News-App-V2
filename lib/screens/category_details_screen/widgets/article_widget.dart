@@ -32,16 +32,19 @@ class ArticleWidget extends StatelessWidget {
         children: [
           ClipRRect(
             borderRadius: BorderRadius.circular(5.r),
-            child: CachedNetworkImage(
-              imageUrl: articleModel.urlToImage ??
-                  'https://answers-afd.microsoft.com/static/images/image-not-found.jpg',
-              fit: BoxFit.cover,
-              width: double.infinity,
-              height: 230.h,
-              placeholder: (context, url) => LoadingAnimationWidget.flickr(
-                leftDotColor: Theme.of(context).colorScheme.primary,
-                rightDotColor: Colors.yellow,
-                size: 45.sp,
+            child: Hero(
+              tag: 'theImage${articleModel.title}',
+              child: CachedNetworkImage(
+                imageUrl: articleModel.urlToImage ??
+                    'https://answers-afd.microsoft.com/static/images/image-not-found.jpg',
+                fit: BoxFit.cover,
+                width: double.infinity,
+                height: 230.h,
+                placeholder: (context, url) => LoadingAnimationWidget.flickr(
+                  leftDotColor: Theme.of(context).colorScheme.primary,
+                  rightDotColor: Colors.yellow,
+                  size: 45.sp,
+                ),
               ),
             ),
           ),
@@ -67,7 +70,7 @@ class ArticleWidget extends StatelessWidget {
             alignment: Alignment.centerRight,
             child: Text(
               timeago.format(
-                  DateTime.parse(articleModel.publishedAt ?? '2024-1-1')),
+                  DateTime.parse(articleModel.publishedAt ?? '2024-01-01')),
               style: TextStyle(
                 fontSize: 13.sp,
                 fontWeight: FontWeight.w400,

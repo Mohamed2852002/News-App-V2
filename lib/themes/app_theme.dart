@@ -22,6 +22,18 @@ class AppTheme {
         color: Colors.white,
       ),
     ),
+    inputDecorationTheme: InputDecorationTheme(
+      hintStyle: TextStyle(
+        color: AppColors.primaryColor.withOpacity(0.28),
+        fontSize: 16.sp,
+        fontWeight: FontWeight.w400,
+      ),
+      fillColor: Colors.white,
+      filled: true,
+      border: OutlineInputBorder(
+        borderRadius: BorderRadius.circular(30.r),
+      ),
+    ),
     colorScheme: ColorScheme.fromSeed(
       seedColor: AppColors.primaryColor,
       primary: AppColors.primaryColor,
