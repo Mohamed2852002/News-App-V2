@@ -18,7 +18,6 @@ class SettingsScreen extends StatelessWidget {
             label: Text('English'),
             dropdownMenuEntries: [
               DropdownMenuEntry<String>(
-                style: ButtonStyle(),
                 value: 'English',
                 label: 'English',
               ),
