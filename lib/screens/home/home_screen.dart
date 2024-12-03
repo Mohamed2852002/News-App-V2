@@ -43,6 +43,7 @@ class _HomeScreenState extends State<HomeScreen> {
       ),
       child: Scaffold(
         drawer: Drawer(
+          
           child: CustomDrawer(
             onTap: (tabs) {
               showSelectedTab(tabs);
