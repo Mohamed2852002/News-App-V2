@@ -3,6 +3,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:news_app_v2/screens/categories_screen/categories_screen.dart';
 import 'package:news_app_v2/screens/category_details_screen/category_details_screen.dart';
 import 'package:news_app_v2/screens/home/widgets/custom_drawer.dart';
+import 'package:news_app_v2/screens/search_articles_screen/search_articles_screen.dart';
 import 'package:news_app_v2/screens/settings_screen/settings_screen.dart';
 
 class HomeScreen extends StatefulWidget {
@@ -50,12 +51,36 @@ class _HomeScreenState extends State<HomeScreen> {
           ),
         ),
         appBar: AppBar(
+          leadingWidth: 80.w,
+          leading: Builder(
+            builder: (BuildContext context) {
+              return Padding(
+                padding: REdgeInsets.only(left: 24),
+                child: IconButton(
+                  icon: const Icon(Icons.menu),
+                  onPressed: () {
+                    Scaffold.of(context).openDrawer();
+                  },
+                ),
+              );
+            },
+          ),
           title: Text(selectedTitle),
           actions: [
             selectedWidget.runtimeType == CategoryDetailsScreen
-                ? Icon(
-                    Icons.search,
-                    size: 40.sp,
+                ? IconButton(
+                    onPressed: () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => const SearchArticlesScreen(),
+                        ),
+                      );
+                    },
+                    icon: Icon(
+                      Icons.search,
+                      size: 40.sp,
+                    ),
                   )
                 : const RSizedBox(),
             const RSizedBox(width: 40),

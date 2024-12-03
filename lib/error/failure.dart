@@ -8,48 +8,51 @@ abstract class Failure {
 
 class ServerFailure extends Failure {
   ServerFailure({required super.errorMessage});
-
-  static String fromDioException(DioException dioException) {
+  factory ServerFailure.fromDioException(DioException dioException) {
     switch (dioException.type) {
       case DioExceptionType.connectionTimeout:
-        return 'Connection Timeout';
+        return ServerFailure(errorMessage: 'Connection Timeout');
 
       case DioExceptionType.sendTimeout:
-        return 'Send Timeout With Api Server';
+        return ServerFailure(errorMessage: 'Send Timeout With Api Server');
 
       case DioExceptionType.receiveTimeout:
-        return 'Receive Timeout With Api Server';
+        return ServerFailure(errorMessage: 'Receive Timeout With Api Server');
 
       case DioExceptionType.badCertificate:
-        return 'Bad Certificate With Api Server';
+        return ServerFailure(errorMessage: 'Bad Certificate With Api Server');
 
       case DioExceptionType.badResponse:
-        return fromResponse(
+        return ServerFailure.fromResponse(
             dioException.response!.statusCode!, dioException.response!.data);
 
       case DioExceptionType.cancel:
-        return 'Request to Api Server was Canceled';
+        return ServerFailure(
+            errorMessage: 'Request to Api Server was Canceled');
 
       case DioExceptionType.connectionError:
-        return 'Connection Error';
+        return ServerFailure(errorMessage: 'Connection Error');
 
       case DioExceptionType.unknown:
-        return 'Unexpected Error Occured, Please Try Again!';
+        return ServerFailure(
+            errorMessage: 'Unexpected Error Occured, Please Try Again!');
 
       default:
-        return 'Oops, There was an Error';
+        return ServerFailure(errorMessage: 'Oops, There was an Error');
     }
   }
 
-  static String fromResponse(int statusCode, dynamic response) {
+  factory ServerFailure.fromResponse(int statusCode, dynamic response) {
     if (statusCode == 400 || statusCode == 401 || statusCode == 403) {
-      return response['error']['message'];
+      return ServerFailure(errorMessage: response['code']);
     } else if (statusCode == 404) {
-      return 'Your Request Not Found, Please Try Again Later!';
+      return ServerFailure(
+          errorMessage: 'Your Request Not Found, Please Try Again Later!');
     } else if (statusCode == 500) {
-      return 'Internal Server Error, Please Try Again Later!';
+      return ServerFailure(
+          errorMessage: 'Internal Server Error, Please Try Again Later!');
     } else {
-      return 'Oops, There was an Error, Please Try Again Later!';
+      return ServerFailure(errorMessage: response['code']);
     }
   }
 }

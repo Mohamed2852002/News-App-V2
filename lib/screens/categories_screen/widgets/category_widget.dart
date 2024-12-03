@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:news_app_v2/cubits/fetch_sources_cubit/fetch_sources_cubit.dart';
 import 'package:news_app_v2/models/category_model.dart';
 
 class CategoryWidget extends StatelessWidget {
@@ -17,6 +19,9 @@ class CategoryWidget extends StatelessWidget {
     return GestureDetector(
       onTap: () {
         onTap(categoryModel.title);
+        BlocProvider.of<FetchSourcesCubit>(context).fetchSources(
+          categoryModel.title,
+        );
       },
       child: Container(
         height: 171.h,
