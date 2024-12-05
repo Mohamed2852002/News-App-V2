@@ -16,9 +16,10 @@ class CustomListTile extends StatelessWidget {
       },
       title: Text(
         text,
-        style: Theme.of(context).textTheme.titleMedium!.copyWith(
-              color: Colors.black,
-            ),
+        style: TextStyle(
+          fontSize: 24.sp,
+          fontWeight: FontWeight.w700,
+        ),
       ),
       leading: Icon(
         icon,

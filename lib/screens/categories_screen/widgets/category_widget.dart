@@ -48,7 +48,12 @@ class CategoryWidget extends StatelessWidget {
             ),
             Text(
               categoryModel.title,
-              style: Theme.of(context).textTheme.titleSmall,
+              style: TextStyle(
+                fontSize: 22.sp,
+                fontWeight: FontWeight.w700,
+                color: Colors.white,
+                fontFamily: 'Exo',
+              ),
             ),
           ],
         ),

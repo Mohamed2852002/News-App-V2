@@ -16,7 +16,10 @@ class CategoriesScreen extends StatelessWidget {
           Text(
             '''Pick your category 
 of interest''',
-            style: Theme.of(context).textTheme.titleLarge,
+            style: TextStyle(
+              fontSize: 22.sp,
+              fontWeight: FontWeight.w700,
+            ),
           ),
           const RSizedBox(height: 30),
           Expanded(

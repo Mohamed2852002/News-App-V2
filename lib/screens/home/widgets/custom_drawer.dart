@@ -20,7 +20,11 @@ class CustomDrawer extends StatelessWidget {
           child: Center(
             child: Text(
               'News App!',
-              style: Theme.of(context).textTheme.titleMedium,
+              style: TextStyle(
+                fontSize: 24.sp,
+                fontWeight: FontWeight.w700,
+                color: Colors.white,
+              ),
             ),
           ),
         ),

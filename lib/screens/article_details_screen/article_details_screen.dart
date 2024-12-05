@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:news_app_v2/models/articles_response_model/article.dart';
 import 'package:news_app_v2/screens/article_details_screen/widgets/article_details_widget.dart';
+import 'package:news_app_v2/themes/app_colors.dart';
 
 class ArticleDetailsScreen extends StatelessWidget {
   const ArticleDetailsScreen(
@@ -23,6 +24,20 @@ class ArticleDetailsScreen extends StatelessWidget {
       child: Scaffold(
         resizeToAvoidBottomInset: false,
         appBar: AppBar(
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.only(
+              bottomLeft: Radius.circular(50.r),
+              bottomRight: Radius.circular(50.r),
+            ),
+          ),
+          backgroundColor: AppColors.primaryColor,
+          centerTitle: true,
+          titleTextStyle: TextStyle(
+            fontWeight: FontWeight.w400,
+            fontSize: 22.sp,
+            color: Colors.white,
+            fontFamily: 'Exo',
+          ),
           automaticallyImplyLeading: false,
           title: Text(categoryName),
         ),

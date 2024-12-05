@@ -5,6 +5,7 @@ import 'package:news_app_v2/screens/category_details_screen/category_details_scr
 import 'package:news_app_v2/screens/home/widgets/custom_drawer.dart';
 import 'package:news_app_v2/screens/search_articles_screen/search_articles_screen.dart';
 import 'package:news_app_v2/screens/settings_screen/settings_screen.dart';
+import 'package:news_app_v2/themes/app_colors.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
@@ -43,7 +44,6 @@ class _HomeScreenState extends State<HomeScreen> {
       ),
       child: Scaffold(
         drawer: Drawer(
-          
           child: CustomDrawer(
             onTap: (tabs) {
               showSelectedTab(tabs);
@@ -52,6 +52,24 @@ class _HomeScreenState extends State<HomeScreen> {
           ),
         ),
         appBar: AppBar(
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.only(
+              bottomLeft: Radius.circular(50.r),
+              bottomRight: Radius.circular(50.r),
+            ),
+          ),
+          backgroundColor: AppColors.primaryColor,
+          centerTitle: true,
+          titleTextStyle: TextStyle(
+            fontWeight: FontWeight.w400,
+            fontSize: 22.sp,
+            color: Colors.white,
+            fontFamily: 'Exo',
+          ),
+          iconTheme: IconThemeData(
+            color: Colors.white,
+            size: 35.r,
+          ),
           leadingWidth: 80.w,
           leading: Builder(
             builder: (BuildContext context) {

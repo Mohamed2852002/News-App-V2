@@ -4,6 +4,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:news_app_v2/cubits/fetch_sources_cubit/fetch_sources_cubit.dart';
 import 'package:news_app_v2/cubits/fetch_sources_cubit/fetch_sources_state.dart';
 import 'package:news_app_v2/screens/category_details_screen/widgets/article_list_view.dart';
+import 'package:news_app_v2/themes/app_colors.dart';
 import 'package:news_app_v2/widgets/custom_error_widget.dart';
 import 'package:news_app_v2/widgets/custom_loading_widget.dart';
 
@@ -26,11 +27,21 @@ class CategoryDetailsScreen extends StatelessWidget {
                     labelPadding: REdgeInsets.only(right: 14),
                     dividerHeight: 0,
                     indicator: BoxDecoration(
-                      color: Theme.of(context).colorScheme.primary,
+                      color: AppColors.primaryColor,
                       borderRadius: BorderRadius.circular(25.r),
                     ),
+                    labelStyle: TextStyle(
+                      fontSize: 14.sp,
+                      fontWeight: FontWeight.w400,
+                      fontFamily: 'Exo',
+                    ),
+                    unselectedLabelStyle: TextStyle(
+                      fontSize: 14.sp,
+                      fontWeight: FontWeight.w400,
+                      fontFamily: 'Exo',
+                    ),
                     labelColor: Colors.white,
-                    unselectedLabelColor: Theme.of(context).colorScheme.primary,
+                    unselectedLabelColor: AppColors.primaryColor,
                     isScrollable: true,
                     tabs: state.sources.map(
                       (source) {
@@ -43,11 +54,18 @@ class CategoryDetailsScreen extends StatelessWidget {
                             decoration: BoxDecoration(
                               border: Border.all(
                                 width: 2.w,
-                                color: Theme.of(context).colorScheme.primary,
+                                color: AppColors.primaryColor,
                               ),
                               borderRadius: BorderRadius.circular(25.r),
                             ),
-                            child: Text(source.name ?? ''),
+                            child: Text(
+                              source.name ?? '',
+                              style: TextStyle(
+                                fontSize: 14.sp,
+                                fontWeight: FontWeight.w400,
+                                fontFamily: 'Exo',
+                              ),
+                            ),
                           ),
                         );
                       },

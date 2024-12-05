@@ -6,11 +6,7 @@ import 'package:news_app_v2/cubits/fetch_sources_cubit/fetch_sources_cubit.dart'
 import 'package:news_app_v2/screens/home/home_screen.dart';
 import 'package:news_app_v2/themes/app_theme.dart';
 
-void main() async {
-  WidgetsFlutterBinding.ensureInitialized();
-  FlutterError.onError = (FlutterErrorDetails details) {
-    FlutterError.dumpErrorToConsole(details);
-  };
+void main() {
   runApp(const NewsApp());
 }
 
